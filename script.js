@@ -11,10 +11,10 @@ const displayElement  = document.getElementById('display');
 
 let players = null;
 
-fetch('/api/data')
+fetch('https://site.api.espn.com/apis/site/v2/sports/golf/leaderboard')
   .then(response => response.json())
   .then(data => {
-    players = data.data.events[0].competitions[0].competitors;
+    players = data.events[0].competitions[0].competitors;
     processData();
   })
   .catch(error => {
