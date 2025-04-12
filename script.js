@@ -1,6 +1,6 @@
 const PARTICIPANTS = {
     'James Nolan': ['569', '9478', '11099'],
-    'Joe O\'Sullivan': ['9478', '10592', '9780'],
+    'Joe O\'Sullivan': ['9478', '10592', '10166'],
     'Cillian Kelly-Murtagh': ['9780', '3470', '388'],
     'Ben Mullin': ['10980', '5539', '10046'],
     'Evan Cullen': ['10592', '11119', '5409'],
