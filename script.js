@@ -1,14 +1,13 @@
 const PARTICIPANTS = {
-    'James Nolan': ['9025', '4375972', '4848'],
-    'Joe O\'Sullivan': ['8973', '3470', '9478'],
-    'Cillian Kelly-Murtagh': ['569', '4587', '3470'],
-    'Ben Mullin': ['569', '4587', '10046'],
-    'Evan Cullen': ['3470', '10046', '4602218'],
-    'Cian Maher': ['10140', '4375972', '3448'],
-    'Sean Kane': ['9478', '4375972', '1225'],
-    'Adam Ryan': ['4587', '8961', '11099'],
-    'Peter Gannon': ['4375972', '11099', '4895429'],
-    'Ruairí MacMathúna': ['4587', '9126', '11099']
+    'James Nolan': ['9478', '10046', '11253'],
+    'Joe O\'Sullivan': ['9478', '9938', '5076021'],
+    'Cillian Kelly-Murtagh': ['9478', '8961', '388'],
+    'Ben Mullin': ['9478', '11253', '8961'],
+    'Evan Cullen': ['4513', '7081', '8961'],
+    'Cian Maher': ['5539', '5860', '2230'],
+    'Sean Kane': ['9126', '9131', '9478'],
+    'Peter Gannon': ['9478', '10046', '4602673'],
+    'Ruairí MacMathúna': ['9126', '5467', '10140']
 };
 
 const displayElement  = document.getElementById('display');
