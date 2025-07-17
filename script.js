@@ -6,7 +6,7 @@ const PARTICIPANTS = {
     'Evan Cullen': ['6798', '4587', '4848'],                    // Koepka, Lowry, Thomas
     'Cian Maher': ['9938', '11378', '5539'],                    // Burns, MacIntyre, Fleetwood
     'Sean Kane': ['9478', '4375972', '7081'],                   // Scheffler, Aberg, Si Woo Kim
-    'Peter Gannon': ['5553', '5579', '5539'],                   // Hatton, Reed, Fleetwood
+    'Peter Gannon': ['388', '5539', '5553'],                   // Scott, Fleetwood, Hatton
     'Ruairí MacMathúna': ['4364873', '569', '9126'],           // Hovland, Rose, Conners
     'Cian Leahy': ['9780', '4587', '4404992'],                  // Rahm, Lowry, Griffin
     'Darragh Cullen': ['5539', '569', '6007'],                  // Fleetwood, Rose, Cantlay
@@ -14,7 +14,7 @@ const PARTICIPANTS = {
     'Kevin Kirwan': ['11378', '5553', '9938'],                  // MacIntyre, Hatton, Burns
     'Kyle Brennan': ['10140', '9780', '4251'],                  // Schauffele, Rahm, Fox
     'Seamus Boyle': ['5539', '569', '4513'],                    // Fleetwood, Rose, Bradley
-    'Peter Byrne': ['388', '5539', '5553']                      // Scott, Fleetwood, Hatton
+    'Peter Byrne': ['5553', '5579', '5539']                      // Hatton, Reed, Fleetwood
 };
 
 
