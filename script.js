@@ -1,49 +1,64 @@
-const PARTICIPANTS = {
-    'James Nolan': ['5539', '9037', '569'],                      // Fleetwood, Fitzpatrick, Rose
-    'Joe O\'Sullivan': ['5409', '5467', '9478'],                 // Henley, Spieth, Scheffler
-    'Cillian Kelly-Murtagh': ['5539', '388', '11378'],          // Fleetwood, Scott, MacIntyre
-    'Ben Mullin': ['9658', '9780', '9478'],                     // Pendrith, Rahm, Scheffler
-    'Evan Cullen': ['6798', '4587', '4848'],                    // Koepka, Lowry, Thomas
-    'Cian Maher': ['9938', '11378', '5539'],                    // Burns, MacIntyre, Fleetwood
-    'Sean Kane': ['9478', '4375972', '7081'],                   // Scheffler, Aberg, Si Woo Kim
-    'Peter Gannon': ['388', '5539', '5553'],                   // Scott, Fleetwood, Hatton
-    'Ruairí MacMathúna': ['4364873', '569', '9126'],           // Hovland, Rose, Conners
-    'Cian Leahy': ['9780', '4587', '4404992'],                  // Rahm, Lowry, Griffin
-    'Darragh Cullen': ['5539', '569', '6007'],                  // Fleetwood, Rose, Cantlay
-    'David Keegan': ['4348444', '3470', '10140'],               // McKibbon, McIlroy, Schauffele
-    'Kevin Kirwan': ['11378', '5553', '9938'],                  // MacIntyre, Hatton, Burns
-    'Kyle Brennan': ['10140', '9780', '4251'],                  // Schauffele, Rahm, Fox
-    'Seamus Boyle': ['5539', '569', '4513'],                    // Fleetwood, Rose, Bradley
-    'Peter Byrne': ['5553', '5579', '5539']                      // Hatton, Reed, Fleetwood
+const SWEEPSTAKES = {
+    '1': {
+        'James Nolan': ['5539', '9037', '569']
+    },
+    '2': {
+        'Joe O\'Sullivan': ['5409', '5467', '9478']
+    },
+    '3': {
+        'Sean Kane': ['9478', '4375972', '7081']
+    }
 };
 
+// Get group from URL
+function getGroupFromURL() {
+    const path = window.location.pathname.replace('/', '');
+    return path || '1';
+}
 
-const displayElement  = document.getElementById('display');
+const groupName = getGroupFromURL();
+const PARTICIPANTS = SWEEPSTAKES[groupName];
+
+const displayElement = document.getElementById('display');
+
+if (!PARTICIPANTS) {
+    displayElement.innerHTML = `<h3>Invalid group: ${groupName}</h3>`;
+    throw new Error('Invalid group');
+}
 
 let players = null;
 
-fetch('https://site.api.espn.com/apis/site/v2/sports/golf/leaderboard')
-  .then(response => response.json())
-  .then(data => {
-    players = data.events[0].competitions[0].competitors;
-    processData();
-  })
-  .catch(error => {
-    displayElement.innerText = 'Error loading data.';
-    console.error(error);
-  });
+// Fetch leaderboard
+function loadLeaderboard() {
+    fetch('https://site.api.espn.com/apis/site/v2/sports/golf/leaderboard')
+        .then(res => res.json())
+        .then(data => {
+            players = data.events[0].competitions[0].competitors;
+            processData();
+        })
+        .catch(err => {
+            displayElement.innerText = 'Error loading data.';
+            console.error(err);
+        });
+}
 
 function processData() {
-    let output = '';
-    let worstScore = getWorstScore();
+    let output = `
+      <div class="leaderboard">
+        <div class="leaderboard-header">
+          <span>⛳ Group ${groupName}</span>
+          <span style="color:#ff4d4d;">● LIVE</span>
+        </div>
+    `;
 
+    let worstScore = getWorstScore();
     let participantScores = [];
 
     Object.keys(PARTICIPANTS).forEach(p => {
         let totalScore = 0;
 
-        const golfersData = PARTICIPANTS[p].map(golferId => {
-            const golfer = players.find(player => player.id === golferId);
+        const golfersData = PARTICIPANTS[p].map(id => {
+            const golfer = players.find(pl => pl.id === id);
 
             if (golfer && golfer.status.displayValue === "CUT") {
                 return {
@@ -61,62 +76,77 @@ function processData() {
                 };
             }
             return null;
-        })
-        .filter(golfer => golfer !== null);
+        }).filter(g => g !== null);
 
-        golfersData.forEach(golfer => {
-            totalScore += golfer.score;
-        });
+        golfersData.forEach(g => totalScore += g.score);
 
         participantScores.push({
             participant: p,
-            totalScore: totalScore,
+            totalScore,
             golfers: golfersData
         });
     });
 
     participantScores.sort((a, b) => a.totalScore - b.totalScore);
 
-    participantScores.forEach(p => {
-        output += `<h4>${p.participant}</h4><ul class="list-unstyled">`;
+    participantScores.forEach((p, index) => {
+        const isLeader = index === 0 ? 'leader' : '';
 
-        p.golfers.forEach(golfer => {
-            if(golfer.madeCut) {
-                output += `<li>${golfer.name}: ${golfer.displayValue}</li>`;
-            } else {
-                output += `<li>${golfer.name}: MC (${golfer.displayValue} is worst score)</li>`;
-            }
+        let scoreClass = '';
+        if (p.totalScore < 0) scoreClass = 'under';
+        if (p.totalScore > 0) scoreClass = 'over';
+
+        // Main row
+        output += `
+          <div class="leaderboard-row ${isLeader}">
+            <div class="position">${index + 1}</div>
+            <div class="name">${p.participant}</div>
+            <div class="score ${scoreClass}">
+              ${formatScore(p.totalScore)}
+            </div>
+          </div>
+        `;
+
+        // Golfers row
+        output += `<div class="golfer-row">`;
+
+        p.golfers.forEach(g => {
+            const mcClass = g.madeCut ? '' : 'mc';
+
+            output += `
+              <div class="golfer ${mcClass}">
+                ${g.name}
+                <span>${g.displayValue}</span>
+              </div>
+            `;
         });
 
-        output += `</ul><p>Total Score: ${formatScore(p.totalScore)}</p><hr>`;
+        output += `</div>`;
     });
+
+    output += `</div>`;
 
     displayElement.innerHTML = output;
-};
+}
 
+function getWorstScore() {
+    const madeCut = players.filter(g => g.status.displayValue !== "CUT");
 
+    const worst = madeCut.reduce((w, c) =>
+        c.statistics[0].value > w.statistics[0].value ? c : w
+    );
 
-function getWorstScore(){
-    const golfersMadeCut = players.filter(golfer => golfer.status.displayValue !== "CUT");
-
-    const worstGolfer = golfersMadeCut.reduce((worst, currentGolfer) => {
-        const worstScore = worst.statistics[0].value;
-        const currentScore = currentGolfer.statistics[0].value;
-
-        return currentScore > worstScore ? currentGolfer : worst;
-    });
-
-    return worstGolfer.statistics[0].value;
+    return worst.statistics[0].value;
 }
 
 function formatScore(score) {
-    if (score < 0) {
-        return `-${Math.abs(score)}`;
-    }
-    
-    if (score > 0) {
-        return `+${score}`;
-    }
-
+    if (score < 0) return `-${Math.abs(score)}`;
+    if (score > 0) return `+${score}`;
     return `E`;
 }
+
+// Initial load
+loadLeaderboard();
+
+// Auto refresh
+setInterval(loadLeaderboard, 60000);
