@@ -2,8 +2,9 @@
 <html>
   <head>
     <script>
-      sessionStorage.redirect = location.pathname;
-      location.replace("/");
+      sessionStorage.redirect = location.pathname + location.search + location.hash;
+
+      window.location.replace("/golf-sweepstakes/");
     </script>
   </head>
 </html>
