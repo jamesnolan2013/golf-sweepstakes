@@ -19,8 +19,16 @@ if (redirect) {
 }
 
 function getGroupFromURL() {
-    const path = window.location.pathname.replace('/', '');
-    return path || '1';
+    const base = "/golf-sweepstakes";
+
+    let path = window.location.pathname;
+
+    if (path.startsWith(base)) {
+        path = path.slice(base.length);
+    }
+
+    const parts = path.split('/').filter(Boolean);
+    return parts[0] || '1';
 }
 
 const groupName = getGroupFromURL();
