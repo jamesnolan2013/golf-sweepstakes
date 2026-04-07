@@ -1,13 +1,13 @@
 const SWEEPSTAKES = {
-    '1': {
+    'golf-sweepstakes/1': {
         'James Nolan': ['5539', '9037', '569'],
         'Joe O\'Sullivan': ['5409', '5467', '9478'],
         'Sean Kane': ['9478', '4375972', '7081']
     },
-    '2': {
+    'golf-sweepstakes/2': {
         'Joe O\'Sullivan': ['5409', '5467', '9478']
     },
-    '3': {
+    'golf-sweepstakes/3': {
         'Sean Kane': ['9478', '4375972', '7081']
     }
 };
