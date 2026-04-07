@@ -12,6 +12,12 @@ const SWEEPSTAKES = {
     }
 };
 
+const redirect = sessionStorage.redirect;
+if (redirect) {
+  history.replaceState(null, null, redirect);
+  sessionStorage.removeItem("redirect");
+}
+
 function getGroupFromURL() {
     const path = window.location.pathname.replace('/', '');
     return path || '1';
