@@ -1,4 +1,4 @@
-const GOLFERS = {
+const Golfers = {
     HAOTONG_LI: "9221",
     JOHNNY_KEEFER: "5217048",
     CARLOS_ORTIZ: "5532",
@@ -53,15 +53,15 @@ const SWEEPSTAKES = {
         'Joe O\'Sullivan': ['5467', '9478', '2211'],
     },
     'goofballs': {
-        'Sean Kane': [HIDEKI_MATSUYAMA, SI_WOO_KIM, SUNGJAE_IM],
-        'Conor Cullen': [TYRRELL_HATTON, JJ_SPAUN, XANDER_SCHAUFFELE],
-        'Seamus Boyle': [SCOTTIE_SCHEFFLER, VIKTOR_HOVLAND, SUNGJAE_IM],
-        'David Keegan': [XANDER_SCHAUFFELE, LUDVIG_ABERG, DANIEL_BERGER],
-        'Darragh Cullen': [TYRRELL_HATTON, JJ_SPAUN, JON_RAHM],
-        'Peter Byrne': [LUDVIG_ABERG, TOMMY_FLEETWOOD, SAM_BURNS],
-        'Kevin Kirwan': [SCOTTIE_SCHEFFLER, JUSTIN_ROSE, GARY_WOODLAND],
-        'Kyle Brennan': [XANDER_SCHAUFFELE, CHRIS_GOTTERUP, SUNGJAE_IM],
-        'Cian Leahy': [SCOTTIE_SCHEFFLER, JUSTIN_ROSE, ALEX_NOREN]
+        'Sean Kane': [Golfers.HIDEKI_MATSUYAMA, Golfers.SI_WOO_KIM, Golfers.SUNGJAE_IM],
+        'Conor Cullen': [Golfers.TYRRELL_HATTON, Golfers.JJ_SPAUN, Golfers.XANDER_SCHAUFFELE],
+        'Seamus Boyle': [Golfers.SCOTTIE_SCHEFFLER, Golfers.VIKTOR_HOVLAND, Golfers.SUNGJAE_IM],
+        'David Keegan': [Golfers.XANDER_SCHAUFFELE, Golfers.LUDVIG_ABERG, Golfers.DANIEL_BERGER],
+        'Darragh Cullen': [Golfers.TYRRELL_HATTON, Golfers.JJ_SPAUN, Golfers.JON_RAHM],
+        'Peter Byrne': [Golfers.LUDVIG_ABERG, Golfers.TOMMY_FLEETWOOD, Golfers.SAM_BURNS],
+        'Kevin Kirwan': [Golfers.SCOTTIE_SCHEFFLER, Golfers.JUSTIN_ROSE, Golfers.GARY_WOODLAND],
+        'Kyle Brennan': [Golfers.XANDER_SCHAUFFELE, Golfers.CHRIS_GOTTERUP, Golfers.SUNGJAE_IM],
+        'Cian Leahy': [Golfers.SCOTTIE_SCHEFFLER, Golfers.JUSTIN_ROSE, Golfers.ALEX_NOREN]
     }
 };
 
