@@ -1,34 +1,76 @@
+const GOLFERS = {
+    HAOTONG_LI: "9221",
+    JOHNNY_KEEFER: "5217048",
+    CARLOS_ORTIZ: "5532",
+    MAX_HOMA: "8973",
+    NAOYUKI_KATAOKA: "4837226",
+    JOSE_MARIA_OLAZABAL: "329",
+    RASMUS_NEERGAARD_PETERSEN: "4858859",
+    ALDRICH_POTGIETER: "5080439",
+    ANGEL_CABRERA: "65",
+    SAMI_VALIMAKI: "4585548",
+    JACKSON_HERRINGTON: "5344766",
+    CHARL_SCHWARTZEL: "1097",
+    RYAN_FOX: "4251",
+    MAX_GREYSERMAN: "11101",
+    VIJAY_SINGH: "392",
+    RASMUS_HOJGAARD: "11253",
+    MATT_MCCARTY: "4901368",
+    KURT_KITAYAMA: "10364",
+    KRISTOFFER_REITAN: "4348470",
+    CASEY_JARVIS: "4610056",
+    BUBBA_WATSON: "780",
+    BRANDON_HOLTZ: "2201886",
+    NICO_ECHAVARRIA: "4408316",
+    CAMERON_SMITH: "9131",
+    JAKE_KNAPP: "9843",
+    HIDEKI_MATSUYAMA: "5860",
+    SI_WOO_KIM: "7081",
+    SUNGJAE_IM: "11382",
+    TYRRELL_HATTON: "5553",
+    JJ_SPAUN: "10166",
+    XANDER_SCHAUFFELE: "10140",
+    SCOTTIE_SCHEFFLER: "9478",
+    LUDVIG_ABERG: "4375972",
+    DANIEL_BERGER: "9025",
+    JON_RAHM: "9780",
+    TOMMY_FLEETWOOD: "5539",
+    SAM_BURNS: "9938",
+    JUSTIN_ROSE: "569",
+    GARY_WOODLAND: "3550",
+    CHRIS_GOTTERUP: "4690755",
+    ALEX_NOREN: "3832",
+    VIKTOR_HOVLAND: "4364873"
+}
+
 const SWEEPSTAKES = {
     '1': {
-        'James Nolan': ['5539', '9037', '569'],
-        'Joe O\'Sullivan': ['5409', '5467', '9478'],
-        'Sean Kane': ['9478', '4375972', '7081']
+        'James Nolan':    ['5539', '9037', '569'],
+        'Paul Burke':     ['5409', '3054', '8821'],
+        'Ciara Walsh':    ['7081', '4322', '6610']
     },
     '2': {
-        'Joe O\'Sullivan': ['5409', '5467', '9478']
+        'Joe O\'Sullivan': ['5467', '9478', '2211'],
     },
     '3': {
-        'Sean Kane': ['9478', '4375972', '7081']
+        'Sean Kane': [HIDEKI_MATSUYAMA, SI_WOO_KIM, SUNGJAE_IM],
+        'Conor Cullen': [TYRRELL_HATTON, JJ_SPAUN, XANDER_SCHAUFFELE],
+        'Seamus Boyle': [SCOTTIE_SCHEFFLER, VIKTOR_HOVLAND, SUNGJAE_IM],
+        'David Keegan': [XANDER_SCHAUFFELE, LUDVIG_ABERG, DANIEL_BERGER],
+        'Darragh Cullen': [TYRRELL_HATTON, JJ_SPAUN, JON_RAHM],
+        'Peter Byrne': [LUDVIG_ABERG, TOMMY_FLEETWOOD, SAM_BURNS],
+        'Kevin Kirwan': [SCOTTIE_SCHEFFLER, JUSTIN_ROSE, GARY_WOODLAND],
+        'Kyle Brennan': [XANDER_SCHAUFFELE, CHRIS_GOTTERUP, SUNGJAE_IM],
+        'Cian Leahy': [SCOTTIE_SCHEFFLER, JUSTIN_ROSE, ALEX_NOREN]
     }
 };
 
-const redirect = sessionStorage.redirect;
-if (redirect) {
-  history.replaceState(null, null, redirect);
-  sessionStorage.removeItem("redirect");
-}
-
 function getGroupFromURL() {
-    const base = "/golf-sweepstakes";
-
-    let path = window.location.pathname;
-
-    if (path.startsWith(base)) {
-        path = path.slice(base.length);
-    }
-
-    const parts = path.split('/').filter(Boolean);
-    return parts[0] || '1';
+    // Support both ?group=1 (GitHub Pages) and /1 (local server)
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('group')) return params.get('group');
+    const path = window.location.pathname.replace('/', '');
+    return path || '1';
 }
 
 const groupName = getGroupFromURL();
@@ -77,6 +119,7 @@ function getRoundScores(golfer) {
     return golfer.linescores
         .slice()
         .sort((a, b) => a.period - b.period)
+        .filter(r => r.displayValue !== undefined && r.displayValue !== null && r.displayValue !== '')
         .map(r => r.displayValue);
 }
 
@@ -172,12 +215,9 @@ function processData() {
             const mcClass = g.madeCut ? '' : 'mc';
             const pillScoreClass = scoreColorClass(g.displayValue);
 
-            let cutMessage = '';
-
             let statusHtml = '';
             if (g.status.type === 'cut') {
                 statusHtml = `<span class="pill-status cut-label">CUT</span>`;
-                cutMessage = 'Worst weekend score: '
             } else if (g.status.type === 'finished') {
                 statusHtml = `<span class="pill-status finished-label">F</span>`;
             } else if (g.status.type === 'active') {
@@ -199,7 +239,6 @@ function processData() {
                 <div class="pill-top">
                   <span class="pill-name">${g.name}</span>
                   <span class="pill-right">
-                    <span class="pill-cut-message">${cutMessage}</span>
                     <span class="pill-score ${pillScoreClass}">${g.displayValue}</span>
                     ${statusHtml}
                   </span>
