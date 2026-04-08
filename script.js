@@ -52,7 +52,7 @@ const SWEEPSTAKES = {
     '2': {
         'Joe O\'Sullivan': ['5467', '9478', '2211'],
     },
-    '3': {
+    'goofballs': {
         'Sean Kane': [HIDEKI_MATSUYAMA, SI_WOO_KIM, SUNGJAE_IM],
         'Conor Cullen': [TYRRELL_HATTON, JJ_SPAUN, XANDER_SCHAUFFELE],
         'Seamus Boyle': [SCOTTIE_SCHEFFLER, VIKTOR_HOVLAND, SUNGJAE_IM],
