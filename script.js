@@ -40,17 +40,58 @@ const Golfers = {
     GARY_WOODLAND: "3550",
     CHRIS_GOTTERUP: "4690755",
     ALEX_NOREN: "3832",
-    VIKTOR_HOVLAND: "4364873"
+    VIKTOR_HOVLAND: "4364873",
+    RORY_MCILROY: "3470",
+    TOM_MCKIBBIN: "4348444",
+    CAM_YOUNG: "4425906",
+    ADAM_SCOTT: "388",
+    RASMUS_HOJGAARD: "11253",
+    JORDAN_SPIETH: "5467",
+    MAX_HOMA: "8973",
+    MIN_WOO_LEE: "4410932",
+    JASON_DAY: "1680",
+    BROOKS_KOEPKA: "6798",
+    RUSSELL_HENLEY: "5409",
+    COREY_CONNORS: "9126",
+    SHANE_LOWRY: "4587",
+    MATT_FITZPATRICK: "9037",
+    AKSHAY_BHATIA: "4419142",
+    PATRICK_REED: "5579",
+    JUSTIN_THOMAS: "4848",
+    KEEGAN_BRADLEY: "4513",
+    NICOLAI_HOJGAARD: "11250",
+    BRYSON_DECHAMBEAU: "8477",
+    ROBERT_MACINTYRE: "11378",
+    SEPP_STRAKA: "8961",
+    COLLIN_MORIKAWA: "10592"
 }
 
 const SWEEPSTAKES = {
     '1': {
-        'James Nolan':    ['5539', '9037', '569'],
-        'Paul Burke':     ['5409', '3054', '8821'],
-        'Ciara Walsh':    ['7081', '4322', '6610']
+        'James': [Golfers.SCOTTIE_SCHEFFLER, Golfers.JJ_SPAUN, Golfers.TYRRELL_HATTON],
+        'Sophie': [Golfers.RORY_MCILROY, Golfers.SHANE_LOWRY, Golfers.TOM_MCKIBBIN],
+        'Sean': [Golfers.CAM_YOUNG, Golfers.CHRIS_GOTTERUP, Golfers.JJ_SPAUN],
+        'David K': [Golfers.LUDVIG_ABERG, Golfers.ADAM_SCOTT, Golfers.SHANE_LOWRY],
+        'Trish': [Golfers.GARY_WOODLAND, Golfers.JON_RAHM, Golfers.JJ_SPAUN],
+        'Jack': [Golfers.CAM_YOUNG, Golfers.XANDER_SCHAUFFELE, Golfers.RASMUS_HOJGAARD],
+        'Jan': [Golfers.JUSTIN_ROSE, Golfers.JON_RAHM, Golfers.MAX_HOMA],
+        'John': [Golfers.JORDAN_SPIETH, Golfers.ADAM_SCOTT, Golfers.MIN_WOO_LEE],
+        'Gail': [Golfers.VIKTOR_HOVLAND, Golfers.SI_WOO_KIM, Golfers.ADAM_SCOTT],
+        'Scats': [Golfers.MAX_HOMA, Golfers.LUDVIG_ABERG, Golfers.MATT_FITZPATRICK],
+        'Dave F': [Golfers.GARY_WOODLAND, Golfers.LUDVIG_ABERG, Golfers.JUSTIN_ROSE],
+        'Mark': [Golfers.TOMMY_FLEETWOOD, Golfers.SHANE_LOWRY, Golfers.JASON_DAY],
+        'Sadie': [Golfers.SHANE_LOWRY, Golfers.BROOKS_KOEPKA, Golfers.RUSSELL_HENLEY],
+        'Thomas': [Golfers.JUSTIN_ROSE, Golfers.COREY_CONNORS, Golfers.MATT_FITZPATRICK]    
     },
     '2': {
-        'Joe O\'Sullivan': ['5467', '9478', '2211'],
+        'Joe': [Golfers.SCOTTIE_SCHEFFLER, Golfers.JJ_SPAUN, Golfers.AKSHAY_BHATIA],
+        'James': [Golfers.LUDVIG_ABERG, Golfers.PATRICK_REED, Golfers.DANIEL_BERGER],
+        'Cian': [Golfers.JUSTIN_ROSE, Golfers.PATRICK_REED, Golfers.TYRRELL_HATTON],
+        'Chez': [Golfers.XANDER_SCHAUFFELE, Golfers.SHANE_LOWRY, Golfers.JASON_DAY],
+        'Ruairí': [Golfers.SHANE_LOWRY, Golfers.JUSTIN_THOMAS, Golfers.TOMMY_FLEETWOOD],
+        'Ben': [Golfers.JON_RAHM, Golfers.JUSTIN_ROSE, Golfers.MAX_HOMA],
+        'Cillian': [Golfers.SCOTTIE_SCHEFFLER, Golfers.JON_RAHM, Golfers.KEEGAN_BRADLEY],
+        'Peter': [Golfers.CAM_YOUNG, Golfers.CHRIS_GOTTERUP, Golfers.NICOLAI_HOJGAARD]
     },
     '3': {
         'Sean Kane': [Golfers.HIDEKI_MATSUYAMA, Golfers.SI_WOO_KIM, Golfers.SUNGJAE_IM],
@@ -62,6 +103,23 @@ const SWEEPSTAKES = {
         'Kevin Kirwan': [Golfers.SCOTTIE_SCHEFFLER, Golfers.JUSTIN_ROSE, Golfers.GARY_WOODLAND],
         'Kyle Brennan': [Golfers.XANDER_SCHAUFFELE, Golfers.CHRIS_GOTTERUP, Golfers.SUNGJAE_IM],
         'Cian Leahy': [Golfers.SCOTTIE_SCHEFFLER, Golfers.JUSTIN_ROSE, Golfers.ALEX_NOREN]
+    },
+    '4': {
+        'Darragh': [Golfers.SHANE_LOWRY, Golfers.BRYSON_DECHAMBEAU, Golfers.TOMMY_FLEETWOOD],
+        'Kev B': [Golfers.MIN_WOO_LEE, Golfers.MATT_FITZPATRICK, Golfers.TOMMY_FLEETWOOD],
+        'Jimmy': [Golfers.SCOTTIE_SCHEFFLER, Golfers.CHRIS_GOTTERUP, Golfers.JUSTIN_THOMAS],
+        'Micky': [Golfers.LUDVIG_ABERG, Golfers.ROBERT_MACINTYRE, Golfers.VIKTOR_HOVLAND],
+        'Chris': [Golfers.PATRICK_REED, Golfers.HIDEKI_MATSUYAMA, Golfers.XANDER_SCHAUFFELE],
+        'Kev O\'D': [Golfers.MATT_FITZPATRICK, Golfers.JUSTIN_ROSE, Golfers.BROOKS_KOEPKA],
+        'Michael McS': [Golfers.JUSTIN_ROSE, Golfers.LUDVIG_ABERG, Golfers.SI_WOO_KIM],
+        'Thomas': [Golfers.JUSTIN_THOMAS, Golfers.JUSTIN_ROSE, Golfers.BRYSON_DECHAMBEAU],
+        'Alex': [Golfers.JUSTIN_ROSE, Golfers.CHRIS_GOTTERUP, Golfers.MATT_FITZPATRICK],
+        'Ollie': [Golfers.BRYSON_DECHAMBEAU, Golfers.CAM_YOUNG, Golfers.AKSHAY_BHATIA],
+        'Oisin': [Golfers.PATRICK_REED, Golfers.JUSTIN_ROSE, Golfers.MATT_FITZPATRICK],
+        'Jack': [Golfers.JON_RAHM, Golfers.MATT_FITZPATRICK, Golfers.SEPP_STRAKA],
+        'Duggan': [Golfers.JON_RAHM, Golfers.PATRICK_REED, Golfers.VIKTOR_HOVLAND],
+        'Paddy': [Golfers.JUSTIN_ROSE, Golfers.SCOTTIE_SCHEFFLER, Golfers.SHANE_LOWRY],
+        'Skelly': [Golfers.BRYSON_DECHAMBEAU, Golfers.COLLIN_MORIKAWA, Golfers.AKSHAY_BHATIA]
     }
 };
 
