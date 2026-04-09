@@ -269,10 +269,13 @@ function processData() {
             <div class="golfer-row">
         `;
 
-        p.golfers.forEach(g => {
+        [...p.golfers].sort((a, b) => {
+            const parse = v => v === 'E' ? 0 : parseInt(v, 10);
+            return parse(a.displayValue) - parse(b.displayValue);
+        }).forEach(g => {
             const mcClass = g.madeCut ? '' : 'mc';
             const pillScoreClass = scoreColorClass(g.displayValue);
-
+        
             let statusHtml = '';
             if (g.status.type === 'cut') {
                 statusHtml = `<span class="pill-status cut-label">CUT</span>`;
@@ -283,7 +286,7 @@ function processData() {
             } else {
                 statusHtml = `<span class="pill-status pre-label">${g.status.label}</span>`;
             }
-
+        
             const roundsHtml = g.roundScores.length > 0
                 ? `<div class="pill-rounds">${
                     g.roundScores.map((r, i) =>
@@ -291,7 +294,7 @@ function processData() {
                     ).join('')
                   }</div>`
                 : '';
-
+        
             html += `
               <div class="golfer-pill ${mcClass}">
                 <div class="pill-top">
