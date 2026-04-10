@@ -190,17 +190,7 @@ function scoreColorClass(displayValue) {
     return 'even';
 }
 
-// Worst score of any golfer in the entire field (not just those who made the cut)
-function getWorstScore() {
-    return players.reduce((worst, g) => {
-        const val = g.statistics[0].value;
-        return val > worst ? val : worst;
-    }, -Infinity);
-}
-
 function processData() {
-    const worstScore = getWorstScore();
-
     // Determine if tournament is fully over across ALL groups
     const allGroupGolfers = Object.values(SWEEPSTAKES)
         .flatMap(group => Object.values(group).flat())
@@ -223,8 +213,8 @@ function processData() {
             if (!golfer) return null;
 
             const isCut = golfer.status.displayValue === 'CUT';
-            const overallScore = isCut ? worstScore : golfer.statistics[0].value;
-            const overallDisplay = isCut ? formatScore(worstScore) : golfer.statistics[0].displayValue;
+            const overallScore = isCut ? 10 : golfer.statistics[0].value;
+            const overallDisplay = isCut ? formatScore(10) : golfer.statistics[0].displayValue;
 
             return {
                 name: golfer.athlete.shortName,
