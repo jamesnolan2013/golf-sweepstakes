@@ -63,7 +63,8 @@ const Golfers = {
     BRYSON_DECHAMBEAU: "10046",
     ROBERT_MACINTYRE: "11378",
     SEPP_STRAKA: "8961",
-    COLLIN_MORIKAWA: "10592"
+    COLLIN_MORIKAWA: "10592",
+    PATRICK_CANTLAY: "6007"
 }
 
 const SWEEPSTAKES = {
@@ -119,7 +120,8 @@ const SWEEPSTAKES = {
         'Jack': [Golfers.JON_RAHM, Golfers.MATT_FITZPATRICK, Golfers.SEPP_STRAKA],
         'Duggan': [Golfers.JON_RAHM, Golfers.PATRICK_REED, Golfers.VIKTOR_HOVLAND],
         'Paddy': [Golfers.JUSTIN_ROSE, Golfers.SCOTTIE_SCHEFFLER, Golfers.SHANE_LOWRY],
-        'Skelly': [Golfers.BRYSON_DECHAMBEAU, Golfers.COLLIN_MORIKAWA, Golfers.AKSHAY_BHATIA]
+        'Skelly': [Golfers.BRYSON_DECHAMBEAU, Golfers.COLLIN_MORIKAWA, Golfers.AKSHAY_BHATIA],
+        'Dave': [Golfers.LUDVIG_ABERG, Golfers.TOMMY_FLEETWOOD, Golfers.PATRICK_CANTLAY]
     }
 };
 
